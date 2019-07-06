@@ -1,5 +1,5 @@
 {
-  "name": "generator-go",
+  "name": "generator-goecho",
   "version": "0.1.4",
   "description": "A yeoman generator to scaffold a simple functionnal golang app",
   "files": [
@@ -21,20 +21,13 @@
     "node": ">=6.9.0"
   },
   "author": {
-    "name": "Benjamin Chenebault",
-    "email": "contact@benjaminchenebault.net",
-    "url": "http://benjaminchenebault.net"
+    "name": "Kayrules",
+    "email": "me@kayrules.com",
+    "url": "https://kayrules.com"
   },
-  "contributors": [
-    {
-      "name": "Randy Lebeau",
-      "email": "randylebeau@gmail.com",
-      "url": "http://github.com/supremetechnopriest"
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bench/generator-go"
+    "url": "https://github.com/kayrules/generator-goecho"
   },
   "license": "MIT"
 }

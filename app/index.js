@@ -14,7 +14,7 @@ module.exports = class extends Generator {
 
         console.log('\n' +
             '+-----------------------------------+\n' +
-            '| G o | c o d e | g e n e r a t o r |\n' +
+            '| G O   E C H O   G E N E R A T O R |\n' +
             '+-----------------------------------+\n' +
             '\n');
 
@@ -28,14 +28,20 @@ module.exports = class extends Generator {
         }, {
             type: 'input',
             name: 'repoUrl',
-            message: 'What is your URL repository ?',
+            message: 'What is your URL repository?',
             default: 'github.com/me'
+        }, {
+            type: 'input',
+            name: 'portNum',
+            message: 'Enter port number?',
+            default: '8001'
         }];
 
         return this.prompt(prompts).then(props => {
             this.appName = props.appName.replace(/\s+/g, '-').toLowerCase();
             if (props.repoUrl.substr(-1) != '/') props.repoUrl += '/';
             this.repoUrl = props.repoUrl + this.appName;
+            this.portNum = props.portNum
             cb()
         });
 
@@ -56,34 +62,64 @@ module.exports = class extends Generator {
             path.join(srcDir, '.gitignore')
         );
         this.fs.copy(
-            this.templatePath('_hello.go'),
-            path.join(srcDir, '/hello/hello.go')
+            this.templatePath('assets'),
+            path.join(srcDir, '/assets')
         );
         this.fs.copy(
-            this.templatePath('_hello_test.go'),
-            path.join(srcDir, '/hello/hello_test.go')
+            this.templatePath('config'),
+            path.join(srcDir, '/config')
+        );
+        this.fs.copy(
+            this.templatePath('view'),
+            path.join(srcDir, '/view')
+        );
+        this.fs.copy(
+            this.templatePath('helpr'),
+            path.join(srcDir, '/helpr')
+        );
+        this.fs.copy(
+            this.templatePath('controller/router.go'),
+            path.join(srcDir, '/controller/router.go'),
+        );
+        this.fs.copy(
+            this.templatePath('controller/index.go'),
+            path.join(srcDir, '/controller/index.go'),
+        );
+        this.fs.copy(
+            this.templatePath('controller/error.go'),
+            path.join(srcDir, '/controller/error.go'),
         );
 
         let tmplContext = {
             appName: this.appName,
-            repoUrl: this.repoUrl
+            repoUrl: this.repoUrl,
+            portNum: this.portNum,
         };
 
         this.fs.copyTpl(
-            this.templatePath('_main.go'),
+            this.templatePath('go.mod'),
+            path.join(srcDir, 'go.mod'),
+            tmplContext
+        );
+        this.fs.copyTpl(
+            this.templatePath('_envrc'),
+            path.join(srcDir, '.envrc'),
+            tmplContext
+        );
+        this.fs.copyTpl(
+            this.templatePath('main.go'),
             path.join(srcDir, 'main.go'),
             tmplContext
         );
         this.fs.copyTpl(
-            this.templatePath('_README.md'),
-            path.join(srcDir, 'README.md'),
+            this.templatePath('init.go'),
+            path.join(srcDir, 'init.go'),
             tmplContext
         );
         this.fs.copyTpl(
-            this.templatePath('_Makefile'),
-            path.join(srcDir, 'Makefile'),
+            this.templatePath('view/_template.html'),
+            path.join(srcDir, '/view/_template.html'),
             tmplContext
         );
-
     }
 };

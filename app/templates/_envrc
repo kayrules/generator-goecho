@@ -1,0 +1,7 @@
+set -o allexport
+
+PORT=<%=portNum%>
+ENV=local
+GO111MODULE=on
+
+set +o allexport
