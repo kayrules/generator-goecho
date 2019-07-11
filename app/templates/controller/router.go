@@ -12,8 +12,10 @@ type Controller struct {
 func NewController(e *echo.Echo) *Controller {
 	ctrl := &Controller{}
 
-	// verify demo
+	// index demo
 	e.GET("/", ctrl.Index)
+	e.GET("/login", ctrl.Login)
+	e.POST("/login", ctrl.PostLogin)
 
 	return ctrl
 }

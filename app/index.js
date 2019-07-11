@@ -78,6 +78,14 @@ module.exports = class extends Generator {
             path.join(srcDir, '/helpr')
         );
         this.fs.copy(
+            this.templatePath('model'),
+            path.join(srcDir, '/model')
+        );
+        this.fs.copy(
+            this.templatePath('controller/_test.go'),
+            path.join(srcDir, '/controller/_test.go'),
+        );
+        this.fs.copy(
             this.templatePath('controller/router.go'),
             path.join(srcDir, '/controller/router.go'),
         );
@@ -88,10 +96,6 @@ module.exports = class extends Generator {
         this.fs.copy(
             this.templatePath('controller/index.go'),
             path.join(srcDir, '/controller/index.go'),
-        );
-        this.fs.copy(
-            this.templatePath('controller/error.go'),
-            path.join(srcDir, '/controller/error.go'),
         );
 
         let tmplContext = {

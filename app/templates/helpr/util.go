@@ -3,6 +3,7 @@ package helpr
 import (
 	"crypto/tls"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"math/rand"
@@ -35,7 +36,9 @@ func Debug(v interface{}) {
 			b, _ := json.MarshalIndent(v, "", "\t")
 			out = string(b)
 		}
-		CustomLog.Output(2, fmt.Sprintf(color, out))
+		if flag.Lookup("test.v") == nil {
+			CustomLog.Output(2, fmt.Sprintf(color, out))
+		}
 	}
 }
 

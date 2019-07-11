@@ -1,0 +1,16 @@
+{{ template "head" }}
+{{ template "header" }}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="form-signin">
+            <h1>Login</h1>
+            <form method="POST" action="/login">
+                <input type="text" name="name" class="form-control" placeholder="Username">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="submit" name="Submit" class="btn btn-primary">
+                <input type="hidden" name="csrf" value="{{ .CSRF }}">
+            </form>
+        </div>
+    </div>
+</div>
+{{ template "footer" . }}
