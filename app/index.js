@@ -82,8 +82,8 @@ module.exports = class extends Generator {
             path.join(srcDir, '/model')
         );
         this.fs.copy(
-            this.templatePath('controller/_test.go'),
-            path.join(srcDir, '/controller/_test.go'),
+            this.templatePath('controller/_testconf.go'),
+            path.join(srcDir, '/controller/_testconf.go'),
         );
         this.fs.copy(
             this.templatePath('controller/router.go'),
