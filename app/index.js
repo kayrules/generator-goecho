@@ -93,10 +93,6 @@ module.exports = class extends Generator {
             this.templatePath('controller/index_test.go'),
             path.join(srcDir, '/controller/index_test.go'),
         );
-        this.fs.copy(
-            this.templatePath('controller/index.go'),
-            path.join(srcDir, '/controller/index.go'),
-        );
 
         let tmplContext = {
             appName: this.appName,
@@ -122,6 +118,11 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
             this.templatePath('init.go'),
             path.join(srcDir, 'init.go'),
+            tmplContext
+        );
+        this.fs.copyTpl(
+            this.templatePath('controller/index.go'),
+            path.join(srcDir, '/controller/index.go'),
             tmplContext
         );
         this.fs.copyTpl(
