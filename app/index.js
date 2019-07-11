@@ -29,7 +29,7 @@ module.exports = class extends Generator {
             type: 'input',
             name: 'repoUrl',
             message: 'What is your URL repository?',
-            default: 'github.com/me'
+            default: 'github.com/kayrules'
         }, {
             type: 'input',
             name: 'portNum',
