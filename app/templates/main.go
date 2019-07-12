@@ -8,6 +8,7 @@ import (
 	"<%=repoUrl%>/controller"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 // TemplateRenderer is a custom html/template renderer for Echo framework
