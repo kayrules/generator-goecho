@@ -20,6 +20,16 @@ func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c 
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
+// CustomValidator struct
+type CustomValidator struct {
+	validator *validator.Validate
+}
+
+// Validate - custom validator
+func (cv *CustomValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
+}
+
 func main() {
 	e := echo.New()
 	e.Use(middleware.Logger())
@@ -29,6 +39,7 @@ func main() {
 		TokenLookup: "form:csrf",
 	}))
 
+	e.Validator = &CustomValidator{validator: validator.New()}
 	renderer := &TemplateRenderer{
 		templates: template.Must(template.ParseGlob("view/*.html")),
 	}
